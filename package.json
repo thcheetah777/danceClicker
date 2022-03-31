@@ -1,0 +1,20 @@
+{
+  "name": "danceclicker",
+  "version": "1.0.0",
+  "description": "A game about dancing and a very generous doner.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "dance",
+    "clicker",
+    "idle",
+    "money"
+  ],
+  "author": "thcheetah777",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.17.3"
+  }
+}
