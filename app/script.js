@@ -15,7 +15,7 @@ class Game extends Phaser.Scene {
     super();
   }
   formatToMoney(number) {
-    return numeral(number).format("$0,0.00");
+    return numeral(number).format("$0,0.00a");
   }
   preload() {
     // ********** Game setup **********

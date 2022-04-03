@@ -1,7 +1,7 @@
 {
   "name": "danceclicker",
   "version": "1.0.0",
-  "description": "A game about dancing and a very generous doner.",
+  "description": "A game about dancing and a very generous donor.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
