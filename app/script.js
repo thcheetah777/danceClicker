@@ -73,7 +73,7 @@ class Game extends Phaser.Scene {
     });
 
     // ---------- Intervals ----------
-    this.engine.setPhaserInterval(() => {
+    setInterval(function () {
       game.money += game.dancers * 1.5;
       game.moneyText.text = this.formatToMoney(game.money);
       game.moneyText.x = this.engine.gameWidthCenter - game.moneyText.width / 2;
