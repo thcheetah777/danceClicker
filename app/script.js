@@ -14,6 +14,9 @@ class Game extends Phaser.Scene {
   constructor() {
     super();
   }
+  formatToMoney(number) {
+    return numeral(number).format("$0,0.00");
+  }
   preload() {
     // ********** Game setup **********
     // ---------- Engine ----------
@@ -39,14 +42,14 @@ class Game extends Phaser.Scene {
       if (game.money >= game.dancerPrice) {
         game.addButton.setScale(6.5);
         game.dancers++;
-        game.perSecondText.text = `$${game.dancers * 1.5} per second`;
+        game.perSecondText.text = `${this.formatToMoney(game.dancers * 1.5)} per second`;
         game.perSecondText.x = this.engine.gameWidthCenter - game.perSecondText.width / 2;
         game.dancersGroup.create(Math.random() * this.engine.gameWidth, this.engine.randomBetween(200 + game.addButton.height, this.engine.gameHeight - 150 + game.addButton.height), "stickman").setScale(8).setGravityY(-1500);
         game.money -= game.dancerPrice;
-        game.moneyText.text = "$" + String(game.money);
+        game.moneyText.text = this.formatToMoney(game.money);
         game.dancerPrice += game.dancerPriceIncrement;
         game.dancerPriceIncrement++
-        game.addDancerText.text = `$${game.dancerPrice}`;
+        game.addDancerText.text = this.formatToMoney(game.dancerPrice);
       }
     });
     this.input.on("pointerup", () => {
@@ -54,7 +57,7 @@ class Game extends Phaser.Scene {
     });
 
     // Add text
-    game.moneyText = this.add.text(this.engine.gameWidthCenter - 40, 20, `$${game.money}`, {
+    game.moneyText = this.add.text(this.engine.gameWidthCenter - 40, 20, this.formatToMoney(game.money), {
       fontSize: "80px",
       fill: "#000000"
     });
@@ -64,7 +67,7 @@ class Game extends Phaser.Scene {
       fill: "#000000"
     });
     game.perSecondText.x = this.engine.gameWidthCenter - game.perSecondText.width / 2;
-    game.addDancerText = this.add.text(this.engine.gameWidthCenter + 40, this.engine.gameHeight - 70, `$${game.dancerPrice}`, {
+    game.addDancerText = this.add.text(this.engine.gameWidthCenter + 40, this.engine.gameHeight - 70, this.formatToMoney(game.dancerPrice), {
       fontSize: "40px",
       fill: "#000000"
     });
@@ -72,7 +75,7 @@ class Game extends Phaser.Scene {
     // ---------- Intervals ----------
     this.engine.setPhaserInterval(() => {
       game.money += game.dancers * 1.5;
-      game.moneyText.text = "$" + String(game.money);
+      game.moneyText.text = this.formatToMoney(game.money);
       game.moneyText.x = this.engine.gameWidthCenter - game.moneyText.width / 2;
     }, 1000);
 
